@@ -83,6 +83,22 @@ class mkdl_data:
                 return df
     
     def get_data_yfinance(self, symbol=None, date_from=None, date_to=None, timeframe=None):
+        """
+        Obtiene datos históricos del mercado desde Yahoo Finance.
+        Parámetros:
+        symbol (str): El símbolo de la acción para descargar.
+        date_from (str): La fecha de inicio para los datos en formato 'YYYY-MM-DD'.
+        date_to (str): La fecha de fin para los datos en formato 'YYYY-MM-DD'.
+        timeframe (str): El intervalo de los datos (por ejemplo, '1d', '1wk', '1mo').
+        Retorna:
+        pandas.DataFrame: Un DataFrame que contiene los datos históricos del mercado con columnas ['Open', 'High', 'Low', 'Close', 'Volume'].
+                El DataFrame se limpia para eliminar cualquier fila con valores NaN.
+        Notas:
+        - Si se proporciona `timeframe`, se utilizará para obtener los datos en el intervalo especificado.
+        - Si se proporcionan `date_from` y/o `date_to`, se utilizarán para limitar el rango de fechas de los datos.
+        - Si no se proporciona `date_from` o `date_to`, la función obtendrá todos los datos disponibles para el `symbol` dado.
+        - Si el DataFrame resultante está vacío, la función devolverá None.
+        """
 
         if timeframe is not None and symbol is not None:
             if date_from is not None and date_to is not None:
